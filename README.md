@@ -2,7 +2,7 @@
 
 <p align="center" style="font-size: 1.5em;">Introducing Modulon 🦾</p>
 
-<p align="center" style="font-size: 1.5em;"><em>A plug-and-play module management framework for your NixOS flake</em></p>
+<p align="center" style="font-size: 1.5em;"><em>A plug-and-play module management framework for NixOS flakes</em></p>
 
 <br>
 
