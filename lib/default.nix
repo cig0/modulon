@@ -56,7 +56,8 @@ let
           content = builtins.readFile file;
         in
         # Check if any pattern exists in the content
-        builtins.any (pattern: lib.strings.hasInfix pattern content) moduleDetection;
+        !(lib.strings.hasInfix "# @MODULON_SKIP" content)
+        && builtins.any (pattern: lib.strings.hasInfix pattern content) moduleDetection;
 
       # Recursively collect .nix files from a directory
       collectModulesRec =
