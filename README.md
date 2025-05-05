@@ -73,7 +73,6 @@
 - [Configuration Options](#configuration-options)
 - [Default Excluded Files](#default-excluded-files)
 - [Excluding Specific Modules/Paths](#excluding-specific-modulespaths)
-- [Using the exclude tag **@MODULON\_SKIP**](#using-the-exclude-tag-modulon_skip)
 - [Including extra modules](#including-extra-modules)
 - [Testing the Flake](#testing-the-flake)
 - [Contributing](#contributing)
@@ -152,9 +151,9 @@ If you have a bunch of modules or paths with the same name, and want to import s
   excludePaths = [ "path/to/tests.nix" "path/to/experimental/" ];
 ```
 
-## Using the exclude tag **@MODULON_SKIP**
+---
 
-> _Added in v0.1.1_
+**Using the exclude tag @MODULON_SKIP** _Added in v0.1.1_
 
 Until now, the only way to skip modules was by adding them to the excludePaths list. With this tag checker, you can now easily tell Modulon to skip specific modules without needing to modify the exclusion list. :)
 
