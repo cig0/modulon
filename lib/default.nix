@@ -37,7 +37,6 @@ let
     {
       dir,
       excludePaths ? [ ],
-      moduleDetection ? modulePatterns,
     }:
     let
       # Check if a path contains any of the special paths that should be excluded
@@ -55,9 +54,8 @@ let
           # Read file content once for efficiency
           content = builtins.readFile file;
         in
-        # Check if any pattern exists in the content
-        !(lib.strings.hasInfix "# @MODULON_SKIP" content)
-        && builtins.any (pattern: lib.strings.hasInfix pattern content) moduleDetection;
+        !(lib.strings.hasInfix "@MODULON_SKIP" content) # Check if Modulon should skip the
+        && builtins.any (pattern: lib.strings.hasInfix pattern content) modulePatterns; # Check against `modulePatterns` if any pattern exists in the content
 
       # Recursively collect .nix files from a directory
       collectModulesRec =
