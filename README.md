@@ -151,6 +151,45 @@ If you have a bunch of modules or paths with the same name, and want to import s
   excludePaths = [ "path/to/tests.nix" "path/to/experimental/" ];
 ```
 
+---
+
+**Using the exclude tag @MODULON_SKIP** _Added in v0.1.1_
+
+Until now, the only way to skip modules was by adding them to the excludePaths list. With this tag checker, you can now easily tell Modulon to skip specific modules without needing to modify the exclusion list. :)
+
+This is especially useful when you have a module structure like this:
+
+```shell
+.
+├── ...
+├── packages
+│   ├── baseline.nix
+│   ├── cli.nix
+│   ├── default.nix
+│   ├── gui.nix
+│   └── tryout.nix
+├── ...
+└── ...
+```
+
+Without this new functionality, you'd need to do something like this in your flake:
+
+```nix
+# Dynamically import NixOS modules
+(libModulon {
+  ...
+  excludePaths = [
+    "/applications/packages/"
+  ];
+  extraModules = [
+    "${self}/configs/nixos/modules/applications/packages/default.nix"
+  ];
+})
+```
+
+Just add `@MODULON_SKIP` somewhere in your module (I recommend adding it at the top), and you're good to go!
+
+
 ## Including extra modules
 
 Sometimes you might need to exclude certain directories, but still want to import select modules or module collections within it; you can achieve so with the `extraModules` option:
